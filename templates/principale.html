@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>SafeLeague - Homepage</title>
+    <style>
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    padding: 20px 0;
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    margin: 0 auto 30px;
+    max-width: 1200px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header h1 {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3.5em;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1 {
+    color: #2d3748;
+    font-size: 2.2em;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+h2 {
+    color: #2d3748;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 60px 40px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.8s ease-out;
+    animation-fill-mode: both;
+}
+
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-section label {
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+select {
+    padding: 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    color: #2d3748;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #4a5568;
+    background: white;
+}
+
+tr:nth-child(even) td {
+    background-color: rgba(102, 126, 234, 0.02);
+}
+
+tr:hover td {
+    background-color: rgba(102, 126, 234, 0.05);
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.error-message {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.5s ease-out;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(248, 215, 218, 0.9), rgba(245, 198, 203, 0.9));
+    color: #721c24;
+    border: 1px solid rgba(245, 198, 203, 0.5);
+    font-weight: 500;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.nav-button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    padding: 18px 35px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;
+}
+
+.nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav-button:hover::before {
+    left: 100%;
+}
+
+.nav-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+td[style*="text-align: center"] {
+    color: #718096;
+    font-style: italic;
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .section, .header {
+        padding: 40px 25px;
+    }
+
+    .header h1 {
+        font-size: 2.8em;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .filter-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    select {
+        min-width: 100%;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    th, td {
+        padding: 15px 10px;
+        font-size: 0.9em;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 2.2em;
+    }
+
+    .section {
+        padding: 30px 20px;
+    }
+
+    th, td {
+        padding: 12px 8px;
+        font-size: 0.8em;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SafeLeague - Serie A</h1>
+    </div>
+
+    <div class="container">
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% else %}
+            <!-- Classifica Section -->
+            <div class="section">
+                <h2>Classifica Serie A</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Squadra</th>
+                            <th>Punti</th>
+                            <th>PG</th>
+                            <th>V</th>
+                            <th>P</th>
+                            <th>S</th>
+                            <th>GF</th>
+                            <th>GS</th>
+                            <th>DR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for classifica in classifiche %}
+                            <tr>
+                                <td>{{ classifica.posizione }}</td>
+                                <td>{{ classifica.squadra.nome }}</td>
+                                <td>{{ classifica.punti }}</td>
+                                <td>{{ classifica.partite_giocate }}</td>
+                                <td>{{ classifica.partite_vinte }}</td>
+                                <td>{{ classifica.partite_pareggiate }}</td>
+                                <td>{{ classifica.partite_perse }}</td>
+                                <td>{{ classifica.gol_fatti }}</td>
+                                <td>{{ classifica.gol_subiti }}</td>
+                                <td>{{ classifica.differenza_reti }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="10" style="text-align: center;">Nessun dato disponibile per la classifica</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Partite Section -->
+            <div class="section">
+                <h2>Partite Serie A</h2>
+
+                <!-- Filter by Giornata -->
+                <div class="filter-section">
+                    <form method="get" action="{% url 'principale' %}">
+                        <label for="giornata">Filtra per Giornata:</label>
+                        <select name="giornata" id="giornata">
+                            {% for giornata in giornate %}
+                                <option value="{{ giornata.id }}" {% if giornata.id == giornata_selezionata.id %}selected{% endif %}>
+                                    {{ giornata }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Filtra</button>
+                    </form>
+                </div>
+
+                <!-- Partite Table -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Giornata</th>
+                            <th>Data</th>
+                            <th>Squadra Casa</th>
+                            <th>Risultato</th>
+                            <th>Squadra Ospite</th>
+                            <th>Stadio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partita in partite %}
+                            <tr>
+                                <td>{{ partita.giornata.numero }}</td>
+                                <td>{{ partita.data|date:"d/m/Y H:i" }}</td>
+                                <td>{{ partita.squadra_casa.nome }}</td>
+                                <td>
+                                    {% if partita.gol_casa is not None and partita.gol_ospite is not None %}
+                                        {{ partita.gol_casa }} - {{ partita.gol_ospite }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>{{ partita.squadra_ospite.nome }}</td>
+                                <td>{{ partita.stadio }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Nessuna partita disponibile</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="{% url 'benvenuto' %}" class="nav-button">Torna alla pagina di benvenuto</a>
+        </div>
+    </div>
+</body>
+</html>
